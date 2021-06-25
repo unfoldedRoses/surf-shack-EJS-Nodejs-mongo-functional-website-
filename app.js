@@ -8,7 +8,7 @@ const passport = require('passport');
 const User = require('./models/user');
 const session = require('express-session');
 const mongoose = require('mongoose');
-
+var methodOverride = require('method-override')
 // require routes
 const index 	= require('./routes/index');
 const posts 	= require('./routes/posts');
@@ -33,9 +33,10 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('tiny'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 // Configure Passport and Sessions
 app.use(session({
@@ -77,8 +78,5 @@ app.use(function(err, req, res, next) {
 let port=7878
 
 app.listen(port)
-
-
-
 
 module.exports = app;

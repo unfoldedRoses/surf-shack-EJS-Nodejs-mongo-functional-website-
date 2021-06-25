@@ -7,7 +7,6 @@ const UserSchema = new Schema({
 	email: String,
 	password:String,
 	image: String,
-	
 	posts: [
 		{
 			type: Schema.Types.ObjectId,
